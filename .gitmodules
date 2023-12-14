@@ -1,0 +1,3 @@
+[submodule "ext/sonic-swss-common"]
+	path = ext/sonic-swss-common
+	url = git@github.com:sonic-net/sonic-swss-common.git
