@@ -1,7 +1,7 @@
 #[cxx::bridge(namespace = "swss")]
 mod ffi {
     unsafe extern "C++" {
-        include!("swss-common-rs/wrapper.h");
+        include!("sonic-swss-common-rs/wrapper.h");
 
         type DBConnector;
         type Table;

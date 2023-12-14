@@ -1,5 +1,5 @@
-#include "../common/dbconnector.h"  // Include the DBConnector header
-#include "../common/table.h"
+#include "ext/sonic-swss-common/common/dbconnector.h"  // Include the DBConnector header
+#include "ext/sonic-swss-common/common/table.h"
 #include <rust/cxx.h>  
 
 namespace swss {

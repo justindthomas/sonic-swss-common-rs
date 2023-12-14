@@ -1,5 +1,5 @@
 [package]
-name = "swss-common-rs"
+name = "sonic-swss-common-rs"
 version = "0.1.0"
 edition = "2021"
 
