@@ -26,5 +26,73 @@ namespace swss {
     
     // Call the set method on the table
     table->set(keyCpp, convertedValues, opCpp, prefixCpp);
-  }  
+  }
+
+  bool table_get(const std::unique_ptr<swss::Table>& table, const rust::Str key, rust::Vec<rust::String> &fields, rust::Vec<rust::String> &values) {
+
+    std::vector<FieldValueTuple> outputValues;
+    
+    std::string keyCpp(key);
+    
+    bool result = table->get(keyCpp, outputValues);
+
+    if (result) {
+      for (size_t i = 0; i < outputValues.size(); i++) {
+        fields.emplace_back(outputValues[i].first);
+        values.emplace_back(outputValues[i].second);
+      }
+    }
+
+    return result;
+  }
+
+  bool table_hget(const std::unique_ptr<swss::Table>& table, const rust::Str key, rust::String &field, rust::String &value) {
+    std::string keyCpp(key);
+    std::string fieldCpp;
+    std::string valueCpp;
+
+    bool result = table->hget(keyCpp, fieldCpp, valueCpp);
+
+    if (result) {
+      field = fieldCpp;
+      value = valueCpp;
+    }
+
+    return result;
+  }
+
+  void table_hset(const std::unique_ptr<swss::Table>& table, const rust::Str key, const rust::String &field, const rust::String &value, const rust::Str op, const rust::Str prefix) {
+    std::string fieldCpp(field);
+    std::string valueCpp(value);
+    std::string keyCpp(key);
+    std::string opCpp(op);
+    std::string prefixCpp(prefix);
+    
+    // Call the set method on the table
+    table->hset(keyCpp, fieldCpp, valueCpp, opCpp, prefixCpp);
+  }
+
+  void table_del(const std::unique_ptr<swss::Table>& table, const rust::Str key, const rust::Str op, const rust::Str prefix) {
+
+    std::string keyCpp(key);
+    std::string opCpp(op);
+    std::string prefixCpp(prefix);
+    
+    // Call the set method on the table
+    table->del(keyCpp, opCpp, prefixCpp);
+  }
+
+  void table_hdel(const std::unique_ptr<swss::Table>& table, const rust::Str key, const rust::Str op, const rust::Str prefix) {
+
+    std::string keyCpp(key);
+    std::string opCpp(op);
+    std::string prefixCpp(prefix);
+    
+    // Call the set method on the table
+    table->hdel(keyCpp, opCpp, prefixCpp);
+  }
+
+  void table_flush(const std::unique_ptr<swss::Table>& table) {
+    table->flush();
+  }
 }
